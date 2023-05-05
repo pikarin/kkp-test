@@ -48,6 +48,11 @@ class Ship extends Model
         return $query->where('status', 'active');
     }
 
+    public function scopeNotActive(Builder $query): Builder
+    {
+        return $query->where('status', '!=', 'active');
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

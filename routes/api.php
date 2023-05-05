@@ -36,6 +36,7 @@ Route::get('ships', [ShipController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::post('ships', [ShipController::class, 'store']);
+    Route::put('ships/{id}', [ShipController::class, 'update']);
 
     Route::put('profile', UpdateProfileController::class);
 });

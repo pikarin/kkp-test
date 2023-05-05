@@ -4,10 +4,10 @@ namespace App\DTO;
 
 use Illuminate\Http\UploadedFile;
 
-class NewShip
+class ShipData
 {
     public function __construct(
-        public int $userId,
+        public int $id,
         public string $code,
         public string $name,
         public string $ownerName,
@@ -16,15 +16,15 @@ class NewShip
         public string $captainName,
         public int $crewSize,
         public string $licenseNumber,
-        public UploadedFile $picture,
-        public UploadedFile $permitDocument,
+        public ?UploadedFile $picture = null,
+        public ?UploadedFile $permitDocument = null,
         public ?string $status = null,
     ) {}
 
     public static function fromArray(array $data)
     {
         return new self(
-            userId: $data['user_id'],
+            id: $data['id'],
             code: $data['code'],
             name: $data['name'],
             ownerName: $data['owner_name'],
@@ -33,8 +33,8 @@ class NewShip
             captainName: $data['captain_name'],
             crewSize: $data['crew_size'],
             licenseNumber: $data['license_number'],
-            picture: $data['picture'],
-            permitDocument: $data['permit_document'],
+            picture: $data['picture'] ?? null,
+            permitDocument: $data['permit_document'] ?? null,
             status: $data['status'] ?? null,
         );
     }
