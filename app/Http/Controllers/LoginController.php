@@ -12,7 +12,7 @@ class LoginController extends Controller
     {
         $credentials = $request->only(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (! $token = auth()->attempt([...$credentials, 'is_active' => true])) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
