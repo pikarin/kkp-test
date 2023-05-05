@@ -9,6 +9,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RefreshTokenController;
 use App\Http\Controllers\RegisterNewUserController;
 use App\Http\Controllers\ShipController;
+use App\Http\Controllers\UpdateProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
@@ -35,4 +36,6 @@ Route::get('ships', [ShipController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::post('ships', [ShipController::class, 'store']);
+
+    Route::put('profile', UpdateProfileController::class);
 });
