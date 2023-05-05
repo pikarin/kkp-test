@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivateUserController;
+use App\Http\Controllers\Admin\ShipController as AdminShipController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RefreshTokenController;
@@ -21,6 +22,10 @@ Route::prefix('auth')->group(function () {
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('users', [UsersController::class, 'index']);
     Route::put('users/{id}/activate', ActivateUserController::class);
+
+    Route::get('ships', [AdminShipController::class, 'index']);
+    Route::get('ships/{id}', [AdminShipController::class, 'show']);
+    // Route::post('ships/{id}/approve', )
 });
 
 Route::middleware('auth')->group(function () {

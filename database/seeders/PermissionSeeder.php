@@ -27,6 +27,7 @@ class PermissionSeeder extends Seeder
             'user_edit',
             'user_activate',
             'user_delete',
+            'ship_access',
             'ship_verify',
             'ship_delete',
             'ship_register',
