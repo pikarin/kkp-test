@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RefreshTokenController;
 use App\Http\Controllers\RegisterNewUserController;
+use App\Http\Controllers\ShipController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
@@ -20,4 +21,8 @@ Route::prefix('auth')->group(function () {
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('users', [UsersController::class, 'index']);
     Route::put('users/{id}/activate', ActivateUserController::class);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::post('ships', [ShipController::class, 'store']);
 });
