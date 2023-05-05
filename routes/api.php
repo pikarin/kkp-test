@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActivateUserController;
 use App\Http\Controllers\Admin\ApproveShipController;
+use App\Http\Controllers\Admin\RejectShipController;
 use App\Http\Controllers\Admin\ShipController as AdminShipController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -27,6 +28,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('ships', [AdminShipController::class, 'index']);
     Route::get('ships/{id}', [AdminShipController::class, 'show']);
     Route::post('ships/{id}/approve', ApproveShipController::class);
+    Route::post('ships/{id}/reject', RejectShipController::class);
 });
 
 Route::get('ships', [ShipController::class, 'index']);

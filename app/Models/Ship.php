@@ -19,13 +19,28 @@ class Ship extends Model
      */
     protected $guarded = [];
 
-    public function markAsVerified(int $userId)
+    public function markAsVerified(int $userId): bool
     {
-        $this->forceFill([
+        return $this->forceFill([
             'verified_by' => $userId,
             'status' => 'active',
         ])
             ->save();
+    }
+
+    public function markAsRejected(int $userId, string $remarks): bool
+    {
+        return $this->forceFill([
+            'verified_by' => $userId,
+            'status' => 'rejected',
+            'remarks' => $remarks,
+        ])
+            ->save();
+    }
+
+    public function scopePending(Builder $query): Builder
+    {
+        return $query->where('status', 'pending');
     }
 
     public function scopeActive(Builder $query): Builder

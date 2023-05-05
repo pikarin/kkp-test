@@ -11,7 +11,7 @@ class ApproveShipController extends Controller
     {
         $this->authorize('ship_verify');
 
-        $ship = Ship::findOrFail($id);
+        $ship = Ship::pending()->findOrFail($id);
 
         $ship->markAsVerified(auth()->id());
 
