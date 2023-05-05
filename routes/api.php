@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RefreshTokenController;
 use App\Http\Controllers\RegisterNewUserController;
 use App\Http\Controllers\VerifyEmailController;
@@ -10,7 +11,6 @@ Route::prefix('auth')->group(function () {
     Route::post('register', RegisterNewUserController::class);
     Route::post('email/verify', VerifyEmailController::class);
     Route::post('login', LoginController::class);
-    // Route::post('logout', 'AuthController@logout');
+    Route::post('logout', LogoutController::class)->middleware('auth');
     Route::post('refresh', RefreshTokenController::class)->middleware('auth');
-    // Route::post('me', 'AuthController@me');
 });
