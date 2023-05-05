@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('otp')->nullable();
             $table->boolean('is_active')->default(false);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
