@@ -22,11 +22,6 @@ class ShipController extends Controller
         return response()->json($ships->paginate($request->perPage ?? 10));
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
-
     public function show(int $id): JsonResponse
     {
         $this->authorize('ship_access');

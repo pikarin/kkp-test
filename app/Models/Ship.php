@@ -19,6 +19,15 @@ class Ship extends Model
      */
     protected $guarded = [];
 
+    public function markAsVerified(int $userId)
+    {
+        $this->forceFill([
+            'verified_by' => $userId,
+            'status' => 'active',
+        ])
+            ->save();
+    }
+
     public function scopeActive(Builder $query): Builder
     {
         return $query->where('status', 'active');
