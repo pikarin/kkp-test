@@ -31,4 +31,7 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'email_app_script' => env('GOOGLE_EMAIL_APP_SCRIPT'),
+    ],
 ];
