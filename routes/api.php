@@ -28,6 +28,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // Route::post('ships/{id}/approve', )
 });
 
+Route::get('ships', [ShipController::class, 'index']);
+
 Route::middleware('auth')->group(function () {
     Route::post('ships', [ShipController::class, 'store']);
 });
