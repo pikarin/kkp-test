@@ -19,6 +19,8 @@ class RegisterNewUserController extends Controller
             'otp' => $otp,
         ]);
 
+        $user->assignRole('User');
+
         $this->dispatch(new SendOtpEmailJob($user));
 
         return response()->json([

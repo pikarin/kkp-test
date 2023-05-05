@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -33,6 +35,15 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
      * Mark the given user's email as verified.
      */
     public function markEmailAsVerified(): bool
@@ -43,14 +54,15 @@ class User extends Authenticatable implements JWTSubject
         ])->save();
     }
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function scopeVerified(Builder $query): Builder
+    {
+        return $query->whereNotNull('email_verified_at');
+    }
+
+    public function scopeInactive(Builder $query): Builder
+    {
+        return $query->where('is_active', false);
+    }
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
